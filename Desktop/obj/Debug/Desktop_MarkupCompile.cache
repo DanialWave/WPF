@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\USER\Desktop\ToDo Lab4\Desktop\obj\Debug\
+C:\Users\USER\Desktop\WPF-Lab 5\Desktop\obj\Debug\
 Desktop
 none
 false
 DEBUG;TRACE
-C:\Users\USER\Desktop\ToDo Lab4\Desktop\App.xaml
-51161877360
+C:\Users\USER\Desktop\WPF-Lab 5\Desktop\App.xaml
+5-856386365
 
-11-1704148403
-10-1151173607
-CreateTaskWindow.xaml;LogInWindow.xaml;Main.xaml;MainEmptyWindow.xaml;RegistrationWindow.xaml;
+15-1257043460
+181872793727
+Window\LoginWindow.xaml;Window\RegisterWindow.xaml;Window\MainEmptyWindow.xaml;Window\CreateWindow.xaml;Window\MainWindow.xaml;
 
 False
 
