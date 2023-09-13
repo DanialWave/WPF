@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\denme\OneDrive\Рабочий стол\WPF-lab5\Desktop\obj\Debug\
+C:\Users\denme\OneDrive\Рабочий стол\wpf-lab6\Desktop\obj\Debug\
 Desktop
 none
 false
 DEBUG;TRACE
-C:\Users\denme\OneDrive\Рабочий стол\WPF-lab5\Desktop\App.xaml
-617594377
+C:\Users\denme\OneDrive\Рабочий стол\wpf-lab6\Desktop\App.xaml
+7-1272795250
 
-15-1257043460
-181185589
-TodoDictionary.xaml;Window\LoginWindow.xaml;Window\RegisterWindow.xaml;Window\MainEmptyWindow.xaml;Window\CreateWindow.xaml;Window\MainWindow.xaml;
+16309414487
+181317151827
+View\CreatePage.xaml;View\LoginPage.xaml;View\MainEmptyPage.xaml;View\MainPage.xaml;View\RegisterPage.xaml;View\MainWindow1.xaml;TodoDictionary.xaml;
 
 False
 

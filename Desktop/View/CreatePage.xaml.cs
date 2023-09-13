@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Desktop.Model;
+using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,25 +12,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Desktop.Model;
-using Desktop.Repository;
-using Desktop.Window;
 
-namespace Desktop
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для Window4.xaml
+    /// Логика взаимодействия для CreatePage.xaml
     /// </summary>
-    public partial class CreateWindow
+    public partial class CreatePage : Page
     {
         private string _name;
-        public CreateWindow(string name = "")
+        public CreatePage(string name = "")
         {
             InitializeComponent();
             _name = name;
         }
-        
         private void CreateTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (Name.Text != "")
@@ -43,16 +42,20 @@ namespace Desktop
                             {
                                 var task = new TaskModel
                                 {
-                                    Id = 0, Title = Name.Text,
-                                    Category = Category.Text, Content = Description.Text,
-                                    Date = DatePicker.Text, Time = Time.Text, IsChecked = false,
-                                    BackgroundColor = Brushes.White, ColorBorder = Brushes.Blue
+                                    Id = 0,
+                                    Title = Name.Text,
+                                    Category = Category.Text,
+                                    Content = Description.Text,
+                                    Date = DatePicker.Text,
+                                    Time = Time.Text,
+                                    IsChecked = false,
+                                    BackgroundColor = Brushes.White,
+                                    ColorBorder = Brushes.Blue
                                 };
-                                
+
                                 TasksRepository.AddTask(task);
-                                var mainWindow = new MainWindow(_name);
-                                mainWindow.Show();
-                                Close();
+                                var mainPage = new MainPage(_name);
+                                NavigationService.Navigate(mainPage);
                             }
                             else
                             {
@@ -82,9 +85,8 @@ namespace Desktop
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new MainWindow();
-            window.Show();
-            Hide();
+            var page = new MainPage();
+            NavigationService.Navigate(page);
         }
     }
 }

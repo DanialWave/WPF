@@ -1,26 +1,34 @@
-﻿using System;
+﻿using Desktop.Model;
+using Desktop.Repository;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using Desktop.Model;
-using Desktop.Repository;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Desktop.Window
+namespace Desktop.View
 {
-    public partial class MainWindow
+    /// <summary>
+    /// Логика взаимодействия для MainPage.xaml
+    /// </summary>
+    public partial class MainPage : Page
     {
         private static bool isCheked;
         private ObservableCollection<CategoryModel> TasksCategory { get; set; }
         private List<SolidColorBrush> Colors { get; set; }
-        
-        public MainWindow(string name = "")
+        public MainPage(string name = "")
         {
             InitializeComponent();
-            
-
             Colors = new List<SolidColorBrush>
             {
                 new SolidColorBrush(System.Windows.Media.Colors.Lime),
@@ -29,7 +37,7 @@ namespace Desktop.Window
                 new SolidColorBrush(System.Windows.Media.Colors.Purple),
             };
 
-            
+
             TasksCategory = new ObservableCollection<CategoryModel>
             {
                 new CategoryModel {Title = "Дом", TitleColor = Colors[0]},
@@ -44,20 +52,19 @@ namespace Desktop.Window
 
         private void AddTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var window = new CreateWindow();
-            window.Show();
-            Hide();
+            var page = new CreatePage();
+            NavigationService.Navigate(page);
         }
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var task = (TaskModel) TasksListBox.SelectedItem;
+            var task = (TaskModel)TasksListBox.SelectedItem;
             TasksRepository.DeleteTask(task);
         }
 
         private void TasksListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var task = (TaskModel) TasksListBox.SelectedItem;
+            var task = (TaskModel)TasksListBox.SelectedItem;
 
             DetailDescriptionBlock.Visibility = Visibility.Visible;
 
@@ -76,7 +83,7 @@ namespace Desktop.Window
 
         private void DoneButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var task = (TaskModel) TasksListBox.SelectedItem;
+            var task = (TaskModel)TasksListBox.SelectedItem;
             task.IsChecked = true;
         }
 
@@ -91,10 +98,10 @@ namespace Desktop.Window
             isCheked = true;
             TasksListBox.ItemsSource = TasksRepository.GetTasksIsChecked(isCheked);
         }
-        
+
         private void TaskListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
     }
 }

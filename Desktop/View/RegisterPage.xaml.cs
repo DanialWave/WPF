@@ -1,19 +1,31 @@
-﻿using System.Windows;
-using Desktop.Model;
+﻿using Desktop.Model;
 using Desktop.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Desktop.Window
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для RegisterPage.xaml
     /// </summary>
-    public partial class RegisterWindow
+    public partial class RegisterPage : Page
     {
-        public RegisterWindow()
+        public RegisterPage()
         {
             InitializeComponent();
         }
-
         private void Zareg(object sender, RoutedEventArgs e)
         {
             if (Validator.Name(name) == false)
@@ -43,9 +55,8 @@ namespace Desktop.Window
                             var registerUser = new UserModel(name.Text, pochta.Text, passreg.Text);
                             if (UserRepository.RegisterUser(registerUser) == null)
                             {
-                                var window3 = new MainEmptyWindow(name.Text);
-                                window3.Show();
-                                Close();
+                                var page3 = new MainEmptyPage(name.Text);
+                                NavigationService.Navigate(page3);
                             }
                             else
                             {
@@ -58,9 +69,8 @@ namespace Desktop.Window
         }
         private void Nazad(object sender, RoutedEventArgs e)
         {
-            LoginWindow glavmenu = new LoginWindow();
-            glavmenu.Show();
-            Close();
+            LoginPage glavmenu = new LoginPage();
+            NavigationService.Navigate(glavmenu);
         }
 
         private void name_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -68,5 +78,4 @@ namespace Desktop.Window
 
         }
     }
-
 }

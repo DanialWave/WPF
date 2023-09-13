@@ -1,23 +1,35 @@
-﻿using System.Text.RegularExpressions;
+﻿using Desktop.Model;
+using Desktop.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Desktop.Model;
-using Desktop.Repository;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Desktop.Window
+namespace Desktop.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для LoginPage.xaml
     /// </summary>
-    public partial class LoginWindow
+    public partial class LoginPage : Page
     {
-        public LoginWindow()
+        public LoginPage()
         {
             InitializeComponent();
         }
         private void Voiti(object sender, RoutedEventArgs e)
         {
-     
+
             if (Validator.EmailValid(Login) == false)
             {
                 MessageBox.Show("Неккоректный ввод почты");
@@ -37,9 +49,8 @@ namespace Desktop.Window
                         if (UserRepository.Checkpass(passuser) == null)
                         {
 
-                            MainEmptyWindow vhod = new MainEmptyWindow("Denis");
-                            vhod.Show();
-                            Close();
+                            MainEmptyPage vhod = new MainEmptyPage();
+                            NavigationService.Navigate(vhod);
                         }
                         else
                         {
@@ -55,9 +66,8 @@ namespace Desktop.Window
         }
         private void Registracia(object sender, RoutedEventArgs e)
         {
-            RegisterWindow reg = new RegisterWindow();
-            reg.Show();
-            Close();
+            RegisterPage reg = new RegisterPage();
+            NavigationService.Navigate(reg);
         }
         private void vid(object sender, RoutedEventArgs e)
         {
