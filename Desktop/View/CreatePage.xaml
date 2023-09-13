@@ -7,8 +7,31 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="CreatePage">
+    <Page.Resources>
+        <!-- Анимация для входа на страницу -->
+        <Storyboard x:Key="PageEnterAnimation">
+            <DoubleAnimation Storyboard.TargetName="PageContainer"
+                         Storyboard.TargetProperty="Opacity"
+                         From="0" To="1" Duration="0:0:0.5" />
+            <DoubleAnimation Storyboard.TargetName="PageContainer"
+                         Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                         From="-50" To="0" Duration="0:0:0.5" />
+        </Storyboard>
 
-    <Grid Background="LightGray">
+        <!-- Анимация для выхода со страницы -->
+        <Storyboard x:Key="PageExitAnimation">
+            <DoubleAnimation Storyboard.TargetName="PageContainer"
+                         Storyboard.TargetProperty="Opacity"
+                         From="1" To="0" Duration="0:0:0.5" />
+            <DoubleAnimation Storyboard.TargetName="PageContainer"
+                         Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                         From="0" To="50" Duration="0:0:0.5" />
+        </Storyboard>
+    </Page.Resources>
+    <Grid Name="PageContainer" Background="LightGray">
+        <Grid.RenderTransform>
+            <TranslateTransform X="0"/>
+        </Grid.RenderTransform>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>

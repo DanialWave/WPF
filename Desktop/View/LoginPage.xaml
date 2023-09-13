@@ -27,20 +27,73 @@
 
             <Label x:Name="Vosstanovlenie" Style="{StaticResource LabelStyle}" Content="Восстановить пароль"  HorizontalAlignment="Right"  FontSize="18"  Margin="0,0,0,10" ></Label>
 
-            <Button Content="Войти" Width="327" Height="48" Margin="0,0,0,10" Style="{StaticResource ButtonStyle}" FontSize="18" Foreground="White" Click="Voiti" IsDefault="True">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20 20 5 5"/>
+            <Button Content="Войти" Width="327" Height="48" Margin="0,0,0,10" FontFamily="/Fonts/#Actor" Background="#F96060" FontSize="18" Foreground="White" Click="Voiti" IsDefault="True">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
                     </Style>
-                </Button.Resources>
+                </Button.Style>
             </Button>
-
-            <Button Content="Регистрация"  Width="327" Height="48" Style="{StaticResource ButtonStyle}" Click="Registracia">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5 5 20 20"/>
+            <Button Content="Регистрация" Width="327" Height="48" FontFamily="/Fonts/#Actor" Background="#F96060" FontSize="18" Foreground="White" Click="Registracia">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleX"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="RenderTransform.ScaleY"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
                     </Style>
-                </Button.Resources>
+                </Button.Style>
             </Button>
 
         </WrapPanel>

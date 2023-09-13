@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,11 +23,21 @@ namespace Desktop.View
     /// </summary>
     public partial class CreatePage : Page
     {
+        private bool _isExiting = false;
         private string _name;
         public CreatePage(string name = "")
         {
             InitializeComponent();
             _name = name;
+            var pageEnterAnimation = (Storyboard)FindResource("PageEnterAnimation");
+            if (pageEnterAnimation != null)
+            {
+                pageEnterAnimation.Completed += (sender, e) =>
+                {
+                    _isExiting = false;
+                };
+                pageEnterAnimation.Begin(PageContainer);
+            }
         }
         private void CreateTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -52,6 +63,7 @@ namespace Desktop.View
                                     BackgroundColor = Brushes.White,
                                     ColorBorder = Brushes.Blue
                                 };
+
 
                                 TasksRepository.AddTask(task);
                                 var mainPage = new MainPage(_name);
@@ -85,8 +97,21 @@ namespace Desktop.View
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var page = new MainPage();
-            NavigationService.Navigate(page);
+            if (!_isExiting)
+            {
+                _isExiting = true;
+
+                var pageExitAnimation = (Storyboard)FindResource("PageExitAnimation");
+                if (pageExitAnimation != null)
+                {
+                    pageExitAnimation.Completed += (s, ev) =>
+                    {
+                        var page = new MainPage();
+                        NavigationService.Navigate(page);
+                    };
+                    pageExitAnimation.Begin(PageContainer);
+                }
+            }
         }
     }
 }
