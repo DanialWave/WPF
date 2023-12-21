@@ -28,35 +28,27 @@ namespace Desktop.View
         {
             InitializeComponent();
         }
+
         private async void Voiti(object sender, RoutedEventArgs e)
         {
-
-            if (Validator.EmailValid(Login) == false)
+            UserModel user = new UserModel(Login.Text, PasswordBox.Password);
+            if (await ApiService.LogInAsync(user))
             {
-                MessageBox.Show("Неккоректный ввод почты");
+                string token = await ApiService.GetTokenAsync(user);
+                user.Token = token;
+
+                ApiService.SaveUserWithToken(user);
+
+                var wind = new MainPage();
+                NavigationService.Navigate(wind);
             }
             else
             {
-                if (Validator.PasswordValid(PasswordBox) == false)
-                {
-                    MessageBox.Show("Неккоректный ввод пароля");
-                }
-                else
-                {
-                    UserModel user = new UserModel(Login.Text, PasswordBox.Password);
-                    if (await ApiService.LogInAsync(user))
-                    {
-                        var wind = new MainPage();
-                        NavigationService.Navigate(wind);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Неверный пароль или логин");
-                    }
-                    
-                }
+                MessageBox.Show("Неверный пароль или логин");
             }
+
         }
+    
         private void Registracia(object sender, RoutedEventArgs e)
         {
             RegisterPage reg = new RegisterPage();

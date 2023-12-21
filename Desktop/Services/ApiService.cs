@@ -101,14 +101,14 @@ namespace Desktop.Services
 
             var httpRequests = new WebClient();
             httpRequests.Headers.Add("Accept", "application/json");
-            httpRequests.Headers.Add("Authorization", "Bearer "+ Token);
+            httpRequests.Headers.Add("Authorization", "Bearer " + Token);
             var data = httpRequests.DownloadData(url + "todos");
 
-           
+
             string output = Encoding.UTF8.GetString(data);
             JArray tasks = JArray.Parse(output);
-            
-            
+
+
             List<TaskModel> tasks1 = new List<TaskModel>();
             Console.WriteLine(tasks);
             foreach (var task in tasks)
@@ -120,7 +120,7 @@ namespace Desktop.Services
                 var category = task["category"].ToString();
                 var id = new Guid((string)task["id"]);
                 var title = task["title"].ToString();
-                var t = new TaskModel ()
+                var t = new TaskModel()
                 {
                     Id = id,
                     Category = category,
@@ -132,15 +132,16 @@ namespace Desktop.Services
                 };
                 tasks1.Add(t);
             }
+
             Tasks = tasks1;
-        }   
+        }
 
         public static async Task<bool> DeleteTaskAsync(TaskModel task)
         {
             var client = new HttpClient();
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            var response = await client.DeleteAsync(url + "todos/" + task.Id) ;
+            var response = await client.DeleteAsync(url + "todos/" + task.Id);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -167,6 +168,42 @@ namespace Desktop.Services
             return false;
         }
 
+        public static async Task SaveUserWithToken(UserModel user)
+        {
+            using (var context = new DbContext())
+            {
+                var existingUser = context.Users.FirstOrDefault(u => u.email == user.email);
+                if (existingUser != null)
+                {
+                    existingUser.Token = user.Token;
+                }
+                else
+                {
+                    context.Users.Add(user);
+                }
 
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public static UserModel GetLoggedInUser()
+        {
+
+            string savedToken = RetrieveSavedToken();
+
+            if (!string.IsNullOrEmpty(savedToken))
+            {
+                using (var context = new YourDbContext())
+                {
+                    var user = context.Users.FirstOrDefault(u => u.Token == savedToken);
+                    if (user != null)
+                    {
+                        return user;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

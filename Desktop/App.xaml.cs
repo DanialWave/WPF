@@ -13,5 +13,17 @@ namespace Desktop
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e) {
+            base.OnStartup(e);
+            var currentUser = ApiService.GetLoggedInUser();
+            if (currentUser != null) {
+                var mainWindow = new MainWindow(); 
+                mainWindow.Show();
+            } else {
+                var loginWindow = new LoginWindow();
+                loginWindow.Show();
+            }
+        }
+
     }
 }
