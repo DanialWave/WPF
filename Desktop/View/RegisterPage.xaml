@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="RegisterPage">
-
+    <Page.DataContext>
+        <local:RegisterPageViewModel/>
+    </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -20,8 +22,9 @@
             <Label Content="Ваша почта"  Style="{StaticResource LabelStyle}" FontSize="20"  Margin="0,0,0,0"></Label>
             <TextBox x:Name="pochta" Height="40" Margin="4,0,0,10" Padding="0,0,0,0" FontSize="16" BorderThickness="0,0,0,1"></TextBox>
             <Label Content="Пароль" Style="{StaticResource LabelStyle}"  FontSize="20"  Margin="0,0,0,0"></Label>
-            <TextBox x:Name="passreg" Height="40" Margin="4,0,0,10" Padding="0,0,0,0" FontSize="16"  BorderThickness="0,0,0,1"></TextBox>
-            <Label x:Name="passregpovtl" Style="{StaticResource LabelStyle}" Content="Повторите пароль"   FontSize="20"  Margin="0,0,0,0"></Label>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+            <PasswordBox x:Name="PasswordBox"/>
+            <Button Content="Регистрация" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=PasswordBox, Path=Password}"/>            <Label x:Name="passregpovtl" Style="{StaticResource LabelStyle}" Content="Повторите пароль"   FontSize="20"  Margin="0,0,0,0"></Label>
             <TextBox  x:Name="passregpovt" Height="40" Margin="4,0,0,10" Padding="0,0,0,0" FontSize="16"  BorderThickness="0,0,0,1"></TextBox>
             <Button Content="Зарегистрироваться" Width="327" Height="48" Margin="0,0,0,10" Style="{StaticResource ButtonStyle}" Click="ZaregAsync">
                 <Button.Resources>

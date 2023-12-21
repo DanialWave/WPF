@@ -8,7 +8,9 @@
       d:DesignHeight="600" d:DesignWidth="800"
       Title="LoginPage">
     <Grid>
-
+        <Page.DataContext>
+            <local:LoginPageViewModel/>
+        </Page.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -19,15 +21,15 @@
             <Label Content="Добро пожаловать!" Style="{StaticResource LabelStyle}"  FontSize="32"  Margin="0,0,0,60"></Label>
 
             <Label Content="Логин" Style="{StaticResource LabelStyle}"  FontSize="20"  Margin="0,0,0,10"></Label>
-            <TextBox x:Name="Login" Height="40" Margin="4,0,0,10" Padding="0,10,0,0" FontSize="16" BorderThickness="0,0,0,1" TextChanged="Login_TextChanged"></TextBox>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
+            <PasswordBox x:Name="PasswordBox"/>
+            <Button Content="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox, Path=Password}"/>
 
             <Label Content="Пароль" Style="{StaticResource LabelStyle}"  FontSize="20"  Margin="0,0,0,10"></Label>
-            <PasswordBox x:Name="PasswordBox" Canvas.ZIndex="1" BorderThickness="0,0,0,1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="320" Margin="4,0,0,0" Padding="0,10,0,0" FontSize="16"></PasswordBox>
             <TextBox x:Name="passv" Canvas.ZIndex="2" Height="40" Margin="4,-40,0,10" Padding="0,10,0,0" FontSize="16" BorderThickness="0,0,0,1" Visibility="Hidden"></TextBox>
 
             <Label x:Name="Vosstanovlenie" Style="{StaticResource LabelStyle}" Content="Восстановить пароль"  HorizontalAlignment="Right"  FontSize="18"  Margin="0,0,0,10" ></Label>
 
-            <Button Content="Войти" Width="327" Height="48" Margin="0,0,0,10" FontFamily="/Fonts/#Actor" Background="#F96060" FontSize="18" Foreground="White" Click="Voiti" IsDefault="True">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">

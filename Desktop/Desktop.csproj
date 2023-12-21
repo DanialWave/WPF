@@ -68,6 +68,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\ApiService.cs" />
+    <Compile Include="ViewsModel\CreatePageViewModel.cs" />
+    <Compile Include="ViewsModel\LoginPageViewModel.cs" />
+    <Compile Include="ViewsModel\RegisterPageViewModel.cs" />
     <Compile Include="View\CreatePage.xaml.cs">
       <DependentUpon>CreatePage.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,5 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
