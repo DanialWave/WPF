@@ -1,0 +1,102 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/user/Desktop/WPF-lab8/Unit Tests/Unit Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/user/Desktop/WPF-lab8/Desktop/Desktop.csproj": {
+      "restore": {
+        "projectUniqueName": "/Users/user/Desktop/WPF-lab8/Desktop/Desktop.csproj",
+        "projectName": "Desktop",
+        "projectPath": "/Users/user/Desktop/WPF-lab8/Desktop/Desktop.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "/Users/user/Desktop/WPF-lab8/Unit Tests/Unit Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/user/Desktop/WPF-lab8/Unit Tests/Unit Tests.csproj",
+        "projectName": "Unit Tests",
+        "projectPath": "/Users/user/Desktop/WPF-lab8/Unit Tests/Unit Tests.csproj",
+        "packagesPath": "/Users/user/.nuget/packages/",
+        "outputPath": "/Users/user/Desktop/WPF-lab8/Unit Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/user/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/user/Desktop/WPF-lab8/Desktop/Desktop.csproj": {
+                "projectPath": "/Users/user/Desktop/WPF-lab8/Desktop/Desktop.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.6.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/user/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
